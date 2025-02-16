@@ -680,304 +680,299 @@ function library:CreateWindow(name, theme)
         end
 
         function InsideTab:CreateColorPicker(text, callback)
-            text = text or "new Color Picker"
-            callback = callback or function() end
-        
-            local ColorPicker = Instance.new("TextLabel")
-            local ColorPickerButton = Instance.new("TextButton")
-            local ColorPickerFrame = Instance.new("Frame")
-            local ColorPickerImage = Instance.new("ImageLabel")
-            local ColorPickerSliderR = Instance.new("TextLabel")
-            local ColorPickerSliderG = Instance.new("TextLabel")
-            local ColorPickerSliderB = Instance.new("TextLabel")
-            local ColorPickerSliderRButton = Instance.new("TextButton")
-            local ColorPickerSliderGButton = Instance.new("TextButton")
-            local ColorPickerSliderBButton = Instance.new("TextButton")
-            local ColorPickerSliderRInner = Instance.new("ImageLabel")
-            local ColorPickerSliderGInner = Instance.new("ImageLabel")
-            local ColorPickerSliderBInner = Instance.new("ImageLabel")
-            local ColorPickerSliderRText = Instance.new("TextLabel")
-            local ColorPickerSliderGText = Instance.new("TextLabel")
-            local ColorPickerSliderBText = Instance.new("TextLabel")
-        
-            ColorPicker.Name = "ColorPicker"
-            ColorPicker.Parent = Frame
-            ColorPicker.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPicker.BackgroundTransparency = 1.000
-            ColorPicker.Size = UDim2.new(0, 200, 0, 50)
-            ColorPicker.Font = Enum.Font.SourceSansSemibold
-            ColorPicker.Text = text
-            ColorPicker.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPicker.TextSize = 14.000
-            ColorPicker.TextXAlignment = Enum.TextXAlignment.Left
-        
-            ColorPickerButton.Parent = ColorPicker
-            ColorPickerButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerButton.BackgroundTransparency = 1.000
-            ColorPickerButton.BorderColor3 = Color3.fromRGB(27, 42, 53)
-            ColorPickerButton.BorderSizePixel = 0
-            ColorPickerButton.Position = UDim2.new(1, -30, 0, 0)
-            ColorPickerButton.Size = UDim2.new(0, 30, 0, 27)
-            ColorPickerButton.ZIndex = 2
-            ColorPickerButton.Font = Enum.Font.SourceSansBold
-            ColorPickerButton.Text = "+"
-            ColorPickerButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerButton.TextSize = 14.000
-        
-            ColorPickerFrame.Name = "ColorPickerFrame"
-            ColorPickerFrame.Parent = ColorPicker
-            ColorPickerFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerFrame.BackgroundTransparency = 1.000
-            ColorPickerFrame.Position = UDim2.new(1, 5, 0, 30)
-            ColorPickerFrame.Size = UDim2.new(0, 197, 0, 150)
+    text = text or "Color Picker"
+    callback = callback or function() end
+
+    local ColorPicker = Instance.new("TextLabel")
+    local ColorPickerButton = Instance.new("TextButton")
+    local ColorPickerFrame = Instance.new("Frame")
+    local ColorPickerImage = Instance.new("ImageLabel")
+    local ColorPickerSliderR = Instance.new("TextLabel")
+    local ColorPickerSliderG = Instance.new("TextLabel")
+    local ColorPickerSliderB = Instance.new("TextLabel")
+    local ColorPickerSliderRButton = Instance.new("TextButton")
+    local ColorPickerSliderGButton = Instance.new("TextButton")
+    local ColorPickerSliderBButton = Instance.new("TextButton")
+    local ColorPickerSliderRInner = Instance.new("ImageLabel")
+    local ColorPickerSliderGInner = Instance.new("ImageLabel")
+    local ColorPickerSliderBInner = Instance.new("ImageLabel")
+    local ColorPickerSliderRText = Instance.new("TextLabel")
+    local ColorPickerSliderGText = Instance.new("TextLabel")
+    local ColorPickerSliderBText = Instance.new("TextLabel")
+    local ColorPreview = Instance.new("Frame")
+
+    ColorPicker.Name = "ColorPicker"
+    ColorPicker.Parent = Frame
+    ColorPicker.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPicker.BackgroundTransparency = 1.000
+    ColorPicker.Size = UDim2.new(0, 200, 0, 50)
+    ColorPicker.Font = Enum.Font.SourceSansSemibold
+    ColorPicker.Text = text
+    ColorPicker.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPicker.TextSize = 14.000
+    ColorPicker.TextXAlignment = Enum.TextXAlignment.Left
+
+    ColorPickerButton.Parent = ColorPicker
+    ColorPickerButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerButton.BackgroundTransparency = 1.000
+    ColorPickerButton.BorderColor3 = Color3.fromRGB(27, 42, 53)
+    ColorPickerButton.BorderSizePixel = 0
+    ColorPickerButton.Position = UDim2.new(1, -30, 0, 0)
+    ColorPickerButton.Size = UDim2.new(0, 30, 0, 27)
+    ColorPickerButton.ZIndex = 2
+    ColorPickerButton.Font = Enum.Font.SourceSansBold
+    ColorPickerButton.Text = "+"
+    ColorPickerButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerButton.TextSize = 14.000
+
+    ColorPickerFrame.Name = "ColorPickerFrame"
+    ColorPickerFrame.Parent = ColorPicker
+    ColorPickerFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerFrame.BackgroundTransparency = 1.000
+    ColorPickerFrame.Position = UDim2.new(1, 5, 0, 30)
+    ColorPickerFrame.Size = UDim2.new(0, 197, 0, 150)
+    ColorPickerFrame.Visible = false
+
+    ColorPickerImage.Name = "ColorPickerImage"
+    ColorPickerImage.Parent = ColorPickerFrame
+    ColorPickerImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerImage.BackgroundTransparency = 1.000
+    ColorPickerImage.Position = UDim2.new(0, 0, 0, 0)
+    ColorPickerImage.Size = UDim2.new(0, 197, 0, 100)
+    ColorPickerImage.Image = "rbxassetid://3570695787"
+    ColorPickerImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerImage.ScaleType = Enum.ScaleType.Slice
+    ColorPickerImage.SliceCenter = Rect.new(100, 100, 100, 100)
+    ColorPickerImage.SliceScale = 0.020
+
+    ColorPickerSliderR.Name = "ColorPickerSliderR"
+    ColorPickerSliderR.Parent = ColorPickerFrame
+    ColorPickerSliderR.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderR.BackgroundTransparency = 1.000
+    ColorPickerSliderR.Position = UDim2.new(0, 0, 0.666666687, 0)
+    ColorPickerSliderR.Size = UDim2.new(0, 197, 0, 16)
+    ColorPickerSliderR.Font = Enum.Font.SourceSansSemibold
+    ColorPickerSliderR.Text = "R"
+    ColorPickerSliderR.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderR.TextSize = 14.000
+
+    ColorPickerSliderG.Name = "ColorPickerSliderG"
+    ColorPickerSliderG.Parent = ColorPickerFrame
+    ColorPickerSliderG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderG.BackgroundTransparency = 1.000
+    ColorPickerSliderG.Position = UDim2.new(0, 0, 0.777777738, 0)
+    ColorPickerSliderG.Size = UDim2.new(0, 197, 0, 16)
+    ColorPickerSliderG.Font = Enum.Font.SourceSansSemibold
+    ColorPickerSliderG.Text = "G"
+    ColorPickerSliderG.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderG.TextSize = 14.000
+
+    ColorPickerSliderB.Name = "ColorPickerSliderB"
+    ColorPickerSliderB.Parent = ColorPickerFrame
+    ColorPickerSliderB.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderB.BackgroundTransparency = 1.000
+    ColorPickerSliderB.Position = UDim2.new(0, 0, 0.888888896, 0)
+    ColorPickerSliderB.Size = UDim2.new(0, 197, 0, 16)
+    ColorPickerSliderB.Font = Enum.Font.SourceSansSemibold
+    ColorPickerSliderB.Text = "B"
+    ColorPickerSliderB.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderB.TextSize = 14.000
+
+    ColorPickerSliderRButton.Name = "ColorPickerSliderRButton"
+    ColorPickerSliderRButton.Parent = ColorPickerSliderR
+    ColorPickerSliderRButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderRButton.BackgroundTransparency = 1.000
+    ColorPickerSliderRButton.BorderSizePixel = 0
+    ColorPickerSliderRButton.Position = UDim2.new(0, 0, 0, 0)
+    ColorPickerSliderRButton.Size = UDim2.new(0, 197, 0, 16)
+    ColorPickerSliderRButton.Font = Enum.Font.SourceSans
+    ColorPickerSliderRButton.Text = ""
+    ColorPickerSliderRButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+    ColorPickerSliderRButton.TextSize = 14.000
+
+    ColorPickerSliderGButton.Name = "ColorPickerSliderGButton"
+    ColorPickerSliderGButton.Parent = ColorPickerSliderG
+    ColorPickerSliderGButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderGButton.BackgroundTransparency = 1.000
+    ColorPickerSliderGButton.BorderSizePixel = 0
+    ColorPickerSliderGButton.Position = UDim2.new(0, 0, 0, 0)
+    ColorPickerSliderGButton.Size = UDim2.new(0, 197, 0, 16)
+    ColorPickerSliderGButton.Font = Enum.Font.SourceSans
+    ColorPickerSliderGButton.Text = ""
+    ColorPickerSliderGButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+    ColorPickerSliderGButton.TextSize = 14.000
+
+    ColorPickerSliderBButton.Name = "ColorPickerSliderBButton"
+    ColorPickerSliderBButton.Parent = ColorPickerSliderB
+    ColorPickerSliderBButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderBButton.BackgroundTransparency = 1.000
+    ColorPickerSliderBButton.BorderSizePixel = 0
+    ColorPickerSliderBButton.Position = UDim2.new(0, 0, 0, 0)
+    ColorPickerSliderBButton.Size = UDim2.new(0, 197, 0, 16)
+    ColorPickerSliderBButton.Font = Enum.Font.SourceSans
+    ColorPickerSliderBButton.Text = ""
+    ColorPickerSliderBButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+    ColorPickerSliderBButton.TextSize = 14.000
+
+    ColorPickerSliderRInner.Name = "ColorPickerSliderRInner"
+    ColorPickerSliderRInner.Parent = ColorPickerSliderRButton
+    ColorPickerSliderRInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderRInner.BackgroundTransparency = 1.000
+    ColorPickerSliderRInner.Size = UDim2.new(0, 0, 0, 16)
+    ColorPickerSliderRInner.Image = "rbxassetid://3570695787"
+    ColorPickerSliderRInner.ImageColor3 = theme3
+    ColorPickerSliderRInner.ScaleType = Enum.ScaleType.Slice
+    ColorPickerSliderRInner.SliceCenter = Rect.new(100, 100, 100, 100)
+    ColorPickerSliderRInner.SliceScale = 0.020
+
+    ColorPickerSliderGInner.Name = "ColorPickerSliderGInner"
+    ColorPickerSliderGInner.Parent = ColorPickerSliderGButton
+    ColorPickerSliderGInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderGInner.BackgroundTransparency = 1.000
+    ColorPickerSliderGInner.Size = UDim2.new(0, 0, 0, 16)
+    ColorPickerSliderGInner.Image = "rbxassetid://3570695787"
+    ColorPickerSliderGInner.ImageColor3 = theme3
+    ColorPickerSliderGInner.ScaleType = Enum.ScaleType.Slice
+    ColorPickerSliderGInner.SliceCenter = Rect.new(100, 100, 100, 100)
+    ColorPickerSliderGInner.SliceScale = 0.020
+
+    ColorPickerSliderBInner.Name = "ColorPickerSliderBInner"
+    ColorPickerSliderBInner.Parent = ColorPickerSliderBButton
+    ColorPickerSliderBInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderBInner.BackgroundTransparency = 1.000
+    ColorPickerSliderBInner.Size = UDim2.new(0, 0, 0, 16)
+    ColorPickerSliderBInner.Image = "rbxassetid://3570695787"
+    ColorPickerSliderBInner.ImageColor3 = theme3
+    ColorPickerSliderBInner.ScaleType = Enum.ScaleType.Slice
+    ColorPickerSliderBInner.SliceCenter = Rect.new(100, 100, 100, 100)
+    ColorPickerSliderBInner.SliceScale = 0.020
+
+    ColorPickerSliderRText.Name = "ColorPickerSliderRText"
+    ColorPickerSliderRText.Parent = ColorPickerSliderR
+    ColorPickerSliderRText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderRText.BackgroundTransparency = 1.000
+    ColorPickerSliderRText.Position = UDim2.new(1.05, 0, 0, 0)
+    ColorPickerSliderRText.Size = UDim2.new(0, 30, 0, 16)
+    ColorPickerSliderRText.Font = Enum.Font.SourceSansBold
+    ColorPickerSliderRText.Text = "0"
+    ColorPickerSliderRText.TextColor3 = theme3
+    ColorPickerSliderRText.TextSize = 14.000
+
+    ColorPickerSliderGText.Name = "ColorPickerSliderGText"
+    ColorPickerSliderGText.Parent = ColorPickerSliderG
+    ColorPickerSliderGText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderGText.BackgroundTransparency = 1.000
+    ColorPickerSliderGText.Position = UDim2.new(1.05, 0, 0, 0)
+    ColorPickerSliderGText.Size = UDim2.new(0, 30, 0, 16)
+    ColorPickerSliderGText.Font = Enum.Font.SourceSansBold
+    ColorPickerSliderGText.Text = "0"
+    ColorPickerSliderGText.TextColor3 = theme3
+    ColorPickerSliderGText.TextSize = 14.000
+
+    ColorPickerSliderBText.Name = "ColorPickerSliderBText"
+    ColorPickerSliderBText.Parent = ColorPickerSliderB
+    ColorPickerSliderBText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPickerSliderBText.BackgroundTransparency = 1.000
+    ColorPickerSliderBText.Position = UDim2.new(1.05, 0, 0, 0)
+    ColorPickerSliderBText.Size = UDim2.new(0, 30, 0, 16)
+    ColorPickerSliderBText.Font = Enum.Font.SourceSansBold
+    ColorPickerSliderBText.Text = "0"
+    ColorPickerSliderBText.TextColor3 = theme3
+    ColorPickerSliderBText.TextSize = 14.000
+
+    ColorPreview.Name = "ColorPreview"
+    ColorPreview.Parent = ColorPicker
+    ColorPreview.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ColorPreview.BorderSizePixel = 1
+    ColorPreview.Position = UDim2.new(0.85, 0, 0.2, 0)
+    ColorPreview.Size = UDim2.new(0, 20, 0, 20)
+
+    local mouse = game.Players.LocalPlayer:GetMouse()
+    local uis = game:GetService("UserInputService")
+    local ValueR = 0
+    local ValueG = 0
+    local ValueB = 0
+
+    local function updateColorPreview()
+        ColorPreview.BackgroundColor3 = Color3.fromRGB(ValueR, ValueG, ValueB)
+        callback(Color3.fromRGB(ValueR, ValueG, ValueB))
+    end
+
+    ColorPickerButton.MouseButton1Click:Connect(function()
+        play("rbxassetid://178104975")
+        if ColorPickerFrame.Visible then
             ColorPickerFrame.Visible = false
-        
-            ColorPickerImage.Name = "ColorPickerImage"
-            ColorPickerImage.Parent = ColorPickerFrame
-            ColorPickerImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerImage.BackgroundTransparency = 1.000
-            ColorPickerImage.Position = UDim2.new(0, 0, 0, 0)
-            ColorPickerImage.Size = UDim2.new(0, 197, 0, 100)
-            ColorPickerImage.Image = "rbxassetid://3570695787"
-            ColorPickerImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerImage.ScaleType = Enum.ScaleType.Slice
-            ColorPickerImage.SliceCenter = Rect.new(100, 100, 100, 100)
-            ColorPickerImage.SliceScale = 0.020
-        
-            ColorPickerSliderR.Name = "ColorPickerSliderR"
-            ColorPickerSliderR.Parent = ColorPickerFrame
-            ColorPickerSliderR.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderR.BackgroundTransparency = 1.000
-            ColorPickerSliderR.Position = UDim2.new(0, 0, 0.666666687, 0)
-            ColorPickerSliderR.Size = UDim2.new(0, 197, 0, 16)
-            ColorPickerSliderR.Font = Enum.Font.SourceSansSemibold
-            ColorPickerSliderR.Text = "R"
-            ColorPickerSliderR.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderR.TextSize = 14.000
-        
-            ColorPickerSliderG.Name = "ColorPickerSliderG"
-            ColorPickerSliderG.Parent = ColorPickerFrame
-            ColorPickerSliderG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderG.BackgroundTransparency = 1.000
-            ColorPickerSliderG.Position = UDim2.new(0, 0, 0.777777738, 0)
-            ColorPickerSliderG.Size = UDim2.new(0, 197, 0, 16)
-            ColorPickerSliderG.Font = Enum.Font.SourceSansSemibold
-            ColorPickerSliderG.Text = "G"
-            ColorPickerSliderG.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderG.TextSize = 14.000
-        
-            ColorPickerSliderB.Name = "ColorPickerSliderB"
-            ColorPickerSliderB.Parent = ColorPickerFrame
-            ColorPickerSliderB.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderB.BackgroundTransparency = 1.000
-            ColorPickerSliderB.Position = UDim2.new(0, 0, 0.888888896, 0)
-            ColorPickerSliderB.Size = UDim2.new(0, 197, 0, 16)
-            ColorPickerSliderB.Font = Enum.Font.SourceSansSemibold
-            ColorPickerSliderB.Text = "B"
-            ColorPickerSliderB.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderB.TextSize = 14.000
-        
-            ColorPickerSliderRButton.Name = "ColorPickerSliderRButton"
-            ColorPickerSliderRButton.Parent = ColorPickerSliderR
-            ColorPickerSliderRButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderRButton.BackgroundTransparency = 1.000
-            ColorPickerSliderRButton.BorderSizePixel = 0
-            ColorPickerSliderRButton.Position = UDim2.new(0, 0, 0, 0)
-            ColorPickerSliderRButton.Size = UDim2.new(0, 197, 0, 16)
-            ColorPickerSliderRButton.Font = Enum.Font.SourceSans
-            ColorPickerSliderRButton.Text = ""
-            ColorPickerSliderRButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-            ColorPickerSliderRButton.TextSize = 14.000
-        
-            ColorPickerSliderGButton.Name = "ColorPickerSliderGButton"
-            ColorPickerSliderGButton.Parent = ColorPickerSliderG
-            ColorPickerSliderGButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderGButton.BackgroundTransparency = 1.000
-            ColorPickerSliderGButton.BorderSizePixel = 0
-            ColorPickerSliderGButton.Position = UDim2.new(0, 0, 0, 0)
-            ColorPickerSliderGButton.Size = UDim2.new(0, 197, 0, 16)
-            ColorPickerSliderGButton.Font = Enum.Font.SourceSans
-            ColorPickerSliderGButton.Text = ""
-            ColorPickerSliderGButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-            ColorPickerSliderGButton.TextSize = 14.000
-        
-            ColorPickerSliderBButton.Name = "ColorPickerSliderBButton"
-            ColorPickerSliderBButton.Parent = ColorPickerSliderB
-            ColorPickerSliderBButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderBButton.BackgroundTransparency = 1.000
-            ColorPickerSliderBButton.BorderSizePixel = 0
-            ColorPickerSliderBButton.Position = UDim2.new(0, 0, 0, 0)
-            ColorPickerSliderBButton.Size = UDim2.new(0, 197, 0, 16)
-            ColorPickerSliderBButton.Font = Enum.Font.SourceSans
-            ColorPickerSliderBButton.Text = ""
-            ColorPickerSliderBButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-            ColorPickerSliderBButton.TextSize = 14.000
-        
-            ColorPickerSliderRInner.Name = "ColorPickerSliderRInner"
-            ColorPickerSliderRInner.Parent = ColorPickerSliderRButton
-            ColorPickerSliderRInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderRInner.BackgroundTransparency = 1.000
-            ColorPickerSliderRInner.Size = UDim2.new(0, 0, 0, 16)
-            ColorPickerSliderRInner.Image = "rbxassetid://3570695787"
-            ColorPickerSliderRInner.ImageColor3 = theme3
-            ColorPickerSliderRInner.ScaleType = Enum.ScaleType.Slice
-            ColorPickerSliderRInner.SliceCenter = Rect.new(100, 100, 100, 100)
-            ColorPickerSliderRInner.SliceScale = 0.020
-        
-            ColorPickerSliderGInner.Name = "ColorPickerSliderGInner"
-            ColorPickerSliderGInner.Parent = ColorPickerSliderGButton
-            ColorPickerSliderGInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderGInner.BackgroundTransparency = 1.000
-            ColorPickerSliderGInner.Size = UDim2.new(0, 0, 0, 16)
-            ColorPickerSliderGInner.Image = "rbxassetid://3570695787"
-            ColorPickerSliderGInner.ImageColor3 = theme3
-            ColorPickerSliderGInner.ScaleType = Enum.ScaleType.Slice
-            ColorPickerSliderGInner.SliceCenter = Rect.new(100, 100, 100, 100)
-            ColorPickerSliderGInner.SliceScale = 0.020
-        
-            ColorPickerSliderBInner.Name = "ColorPickerSliderBInner"
-            ColorPickerSliderBInner.Parent = ColorPickerSliderBButton
-            ColorPickerSliderBInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderBInner.BackgroundTransparency = 1.000
-            ColorPickerSliderBInner.Size = UDim2.new(0, 0, 0, 16)
-            ColorPickerSliderBInner.Image = "rbxassetid://3570695787"
-            ColorPickerSliderBInner.ImageColor3 = theme3
-            ColorPickerSliderBInner.ScaleType = Enum.ScaleType.Slice
-            ColorPickerSliderBInner.SliceCenter = Rect.new(100, 100, 100, 100)
-            ColorPickerSliderBInner.SliceScale = 0.020
-        
-            ColorPickerSliderRText.Name = "ColorPickerSliderRText"
-            ColorPickerSliderRText.Parent = ColorPickerSliderR
-            ColorPickerSliderRText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderRText.BackgroundTransparency = 1.000
-            ColorPickerSliderRText.Position = UDim2.new(1.05, 0, 0, 0)
-            ColorPickerSliderRText.Size = UDim2.new(0, 30, 0, 16)
-            ColorPickerSliderRText.Font = Enum.Font.SourceSansBold
-            ColorPickerSliderRText.Text = "0"
-            ColorPickerSliderRText.TextColor3 = theme3
-            ColorPickerSliderRText.TextSize = 14.000
-        
-            ColorPickerSliderGText.Name = "ColorPickerSliderGText"
-            ColorPickerSliderGText.Parent = ColorPickerSliderG
-            ColorPickerSliderGText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderGText.BackgroundTransparency = 1.000
-            ColorPickerSliderGText.Position = UDim2.new(1.05, 0, 0, 0)
-            ColorPickerSliderGText.Size = UDim2.new(0, 30, 0, 16)
-            ColorPickerSliderGText.Font = Enum.Font.SourceSansBold
-            ColorPickerSliderGText.Text = "0"
-            ColorPickerSliderGText.TextColor3 = theme3
-            ColorPickerSliderGText.TextSize = 14.000
-        
-            ColorPickerSliderBText.Name = "ColorPickerSliderBText"
-            ColorPickerSliderBText.Parent = ColorPickerSliderB
-            ColorPickerSliderBText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ColorPickerSliderBText.BackgroundTransparency = 1.000
-            ColorPickerSliderBText.Position = UDim2.new(1.05, 0, 0, 0)
-            ColorPickerSliderBText.Size = UDim2.new(0, 30, 0, 16)
-            ColorPickerSliderBText.Font = Enum.Font.SourceSansBold
-            ColorPickerSliderBText.Text = "0"
-            ColorPickerSliderBText.TextColor3 = theme3
-            ColorPickerSliderBText.TextSize = 14.000
-        
-            local mouse = game.Players.LocalPlayer:GetMouse()
-            local uis = game:GetService("UserInputService")
-            local ValueR = 0
-            local ValueG = 0
-            local ValueB = 0
-        
-            ColorPickerButton.MouseButton1Click:Connect(function()
-                play("rbxassetid://178104975")
-                if ColorPickerFrame.Visible then
-                    ColorPickerFrame.Visible = false
-                else
-                    ColorPickerFrame.Visible = true
-                end
-            end)
-        
-            ColorPickerSliderRButton.MouseButton1Down:Connect(function()
-                ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
-                pcall(function()
-                    callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                    ColorPickerSliderRText.Text = ValueR
-                end)
-                ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
-                local moveconnection = mouse.Move:Connect(function()
-                    ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
-                    pcall(function()
-                        callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                        ColorPickerSliderRText.Text = ValueR
-                    end)
-                    ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
-                end)
-                local releaseconnection = uis.InputEnded:Connect(function(Mouse)
-                    if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                        ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
-                        pcall(function()
-                            callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                        end)
-                        ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
-                        moveconnection:Disconnect()
-                        releaseconnection:Disconnect()
-                    end
-                end)
-            end)
-        
-            ColorPickerSliderGButton.MouseButton1Down:Connect(function()
-                ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
-                pcall(function()
-                    callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                    ColorPickerSliderGText.Text = ValueG
-                end)
-                ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
-                local moveconnection = mouse.Move:Connect(function()
-                    ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
-                    pcall(function()
-                        callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                        ColorPickerSliderGText.Text = ValueG
-                    end)
-                    ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
-                end)
-                local releaseconnection = uis.InputEnded:Connect(function(Mouse)
-                    if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                        ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
-                        pcall(function()
-                            callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                        end)
-                        ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
-                        moveconnection:Disconnect()
-                        releaseconnection:Disconnect()
-                    end
-                end)
-            end)
-        
-            ColorPickerSliderBButton.MouseButton1Down:Connect(function()
-                ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
-                pcall(function()
-                    callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                    ColorPickerSliderBText.Text = ValueB
-                end)
-                ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
-                local moveconnection = mouse.Move:Connect(function()
-                    ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
-                    pcall(function()
-                        callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                        ColorPickerSliderBText.Text = ValueB
-                    end)
-                    ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
-                end)
-                local releaseconnection = uis.InputEnded:Connect(function(Mouse)
-                    if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                        ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
-                        pcall(function()
-                            callback(Color3.fromRGB(ValueR, ValueG, ValueB))
-                        end)
-                        ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
-                        moveconnection:Disconnect()
-                        releaseconnection:Disconnect()
-                    end
-                end)
-            end)
+        else
+            ColorPickerFrame.Visible = true
         end
+    end)
+
+    ColorPickerSliderRButton.MouseButton1Down:Connect(function()
+        ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
+        ColorPickerSliderRText.Text = ValueR
+        updateColorPreview()
+        ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
+        local moveconnection = mouse.Move:Connect(function()
+            ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
+            ColorPickerSliderRText.Text = ValueR
+            updateColorPreview()
+            ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
+        end)
+        local releaseconnection = uis.InputEnded:Connect(function(Mouse)
+            if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+                ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
+                updateColorPreview()
+                ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
+                moveconnection:Disconnect()
+                releaseconnection:Disconnect()
+            end
+        end)
+    end)
+
+    ColorPickerSliderGButton.MouseButton1Down:Connect(function()
+        ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
+        ColorPickerSliderGText.Text = ValueG
+        updateColorPreview()
+        ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
+        local moveconnection = mouse.Move:Connect(function()
+            ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
+            ColorPickerSliderGText.Text = ValueG
+            updateColorPreview()
+            ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
+        end)
+        local releaseconnection = uis.InputEnded:Connect(function(Mouse)
+            if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+                ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
+                updateColorPreview()
+                ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
+                moveconnection:Disconnect()
+                releaseconnection:Disconnect()
+            end
+        end)
+    end)
+
+    ColorPickerSliderBButton.MouseButton1Down:Connect(function()
+        ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
+        ColorPickerSliderBText.Text = ValueB
+        updateColorPreview()
+        ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
+        local moveconnection = mouse.Move:Connect(function()
+            ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
+            ColorPickerSliderBText.Text = ValueB
+            updateColorPreview()
+            ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
+        end)
+        local releaseconnection = uis.InputEnded:Connect(function(Mouse)
+            if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+                ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
+                updateColorPreview()
+                ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
+                moveconnection:Disconnect()
+                releaseconnection:Disconnect()
+            end
+        end)
+    end)
+end
         
 
         return InsideTab
