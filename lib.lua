@@ -679,9 +679,10 @@ function library:CreateWindow(name, theme)
             end)
         end
 
-        function InsideTab:CreateColorPicker(callback)
+        function InsideTab:CreateColorPicker(text, callback)
+            text = text or "new Color Picker"
             callback = callback or function() end
-
+        
             local ColorPicker = Instance.new("TextLabel")
             local ColorPickerButton = Instance.new("TextButton")
             local ColorPickerFrame = Instance.new("Frame")
@@ -698,38 +699,39 @@ function library:CreateWindow(name, theme)
             local ColorPickerSliderRText = Instance.new("TextLabel")
             local ColorPickerSliderGText = Instance.new("TextLabel")
             local ColorPickerSliderBText = Instance.new("TextLabel")
-
+        
             ColorPicker.Name = "ColorPicker"
             ColorPicker.Parent = Frame
             ColorPicker.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ColorPicker.BackgroundTransparency = 1.000
             ColorPicker.Size = UDim2.new(0, 200, 0, 50)
             ColorPicker.Font = Enum.Font.SourceSansSemibold
-            ColorPicker.Text = "Color Picker"
+            ColorPicker.Text = text
             ColorPicker.TextColor3 = Color3.fromRGB(255, 255, 255)
             ColorPicker.TextSize = 14.000
-
+            ColorPicker.TextXAlignment = Enum.TextXAlignment.Left
+        
             ColorPickerButton.Parent = ColorPicker
             ColorPickerButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ColorPickerButton.BackgroundTransparency = 1.000
             ColorPickerButton.BorderColor3 = Color3.fromRGB(27, 42, 53)
             ColorPickerButton.BorderSizePixel = 0
-            ColorPickerButton.Position = UDim2.new(1, 0, 0, 0)
-            ColorPickerButton.Size = UDim2.new(0, 31, 0, 27)
+            ColorPickerButton.Position = UDim2.new(1, -30, 0, 0)
+            ColorPickerButton.Size = UDim2.new(0, 30, 0, 27)
             ColorPickerButton.ZIndex = 2
             ColorPickerButton.Font = Enum.Font.SourceSansBold
             ColorPickerButton.Text = "+"
             ColorPickerButton.TextColor3 = Color3.fromRGB(255, 255, 255)
             ColorPickerButton.TextSize = 14.000
-
+        
             ColorPickerFrame.Name = "ColorPickerFrame"
             ColorPickerFrame.Parent = ColorPicker
             ColorPickerFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ColorPickerFrame.BackgroundTransparency = 1.000
-            ColorPickerFrame.Position = UDim2.new(1.46359456, 0, 0, 0)
+            ColorPickerFrame.Position = UDim2.new(1, 5, 0, 30)
             ColorPickerFrame.Size = UDim2.new(0, 197, 0, 150)
             ColorPickerFrame.Visible = false
-
+        
             ColorPickerImage.Name = "ColorPickerImage"
             ColorPickerImage.Parent = ColorPickerFrame
             ColorPickerImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -741,7 +743,7 @@ function library:CreateWindow(name, theme)
             ColorPickerImage.ScaleType = Enum.ScaleType.Slice
             ColorPickerImage.SliceCenter = Rect.new(100, 100, 100, 100)
             ColorPickerImage.SliceScale = 0.020
-
+        
             ColorPickerSliderR.Name = "ColorPickerSliderR"
             ColorPickerSliderR.Parent = ColorPickerFrame
             ColorPickerSliderR.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -752,7 +754,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderR.Text = "R"
             ColorPickerSliderR.TextColor3 = Color3.fromRGB(255, 255, 255)
             ColorPickerSliderR.TextSize = 14.000
-
+        
             ColorPickerSliderG.Name = "ColorPickerSliderG"
             ColorPickerSliderG.Parent = ColorPickerFrame
             ColorPickerSliderG.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -763,7 +765,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderG.Text = "G"
             ColorPickerSliderG.TextColor3 = Color3.fromRGB(255, 255, 255)
             ColorPickerSliderG.TextSize = 14.000
-
+        
             ColorPickerSliderB.Name = "ColorPickerSliderB"
             ColorPickerSliderB.Parent = ColorPickerFrame
             ColorPickerSliderB.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -774,7 +776,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderB.Text = "B"
             ColorPickerSliderB.TextColor3 = Color3.fromRGB(255, 255, 255)
             ColorPickerSliderB.TextSize = 14.000
-
+        
             ColorPickerSliderRButton.Name = "ColorPickerSliderRButton"
             ColorPickerSliderRButton.Parent = ColorPickerSliderR
             ColorPickerSliderRButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -786,7 +788,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderRButton.Text = ""
             ColorPickerSliderRButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             ColorPickerSliderRButton.TextSize = 14.000
-
+        
             ColorPickerSliderGButton.Name = "ColorPickerSliderGButton"
             ColorPickerSliderGButton.Parent = ColorPickerSliderG
             ColorPickerSliderGButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -798,7 +800,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderGButton.Text = ""
             ColorPickerSliderGButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             ColorPickerSliderGButton.TextSize = 14.000
-
+        
             ColorPickerSliderBButton.Name = "ColorPickerSliderBButton"
             ColorPickerSliderBButton.Parent = ColorPickerSliderB
             ColorPickerSliderBButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -810,7 +812,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderBButton.Text = ""
             ColorPickerSliderBButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             ColorPickerSliderBButton.TextSize = 14.000
-
+        
             ColorPickerSliderRInner.Name = "ColorPickerSliderRInner"
             ColorPickerSliderRInner.Parent = ColorPickerSliderRButton
             ColorPickerSliderRInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -821,7 +823,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderRInner.ScaleType = Enum.ScaleType.Slice
             ColorPickerSliderRInner.SliceCenter = Rect.new(100, 100, 100, 100)
             ColorPickerSliderRInner.SliceScale = 0.020
-
+        
             ColorPickerSliderGInner.Name = "ColorPickerSliderGInner"
             ColorPickerSliderGInner.Parent = ColorPickerSliderGButton
             ColorPickerSliderGInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -832,7 +834,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderGInner.ScaleType = Enum.ScaleType.Slice
             ColorPickerSliderGInner.SliceCenter = Rect.new(100, 100, 100, 100)
             ColorPickerSliderGInner.SliceScale = 0.020
-
+        
             ColorPickerSliderBInner.Name = "ColorPickerSliderBInner"
             ColorPickerSliderBInner.Parent = ColorPickerSliderBButton
             ColorPickerSliderBInner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -843,7 +845,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderBInner.ScaleType = Enum.ScaleType.Slice
             ColorPickerSliderBInner.SliceCenter = Rect.new(100, 100, 100, 100)
             ColorPickerSliderBInner.SliceScale = 0.020
-
+        
             ColorPickerSliderRText.Name = "ColorPickerSliderRText"
             ColorPickerSliderRText.Parent = ColorPickerSliderR
             ColorPickerSliderRText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -854,7 +856,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderRText.Text = "0"
             ColorPickerSliderRText.TextColor3 = theme3
             ColorPickerSliderRText.TextSize = 14.000
-
+        
             ColorPickerSliderGText.Name = "ColorPickerSliderGText"
             ColorPickerSliderGText.Parent = ColorPickerSliderG
             ColorPickerSliderGText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -865,7 +867,7 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderGText.Text = "0"
             ColorPickerSliderGText.TextColor3 = theme3
             ColorPickerSliderGText.TextSize = 14.000
-
+        
             ColorPickerSliderBText.Name = "ColorPickerSliderBText"
             ColorPickerSliderBText.Parent = ColorPickerSliderB
             ColorPickerSliderBText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -876,13 +878,13 @@ function library:CreateWindow(name, theme)
             ColorPickerSliderBText.Text = "0"
             ColorPickerSliderBText.TextColor3 = theme3
             ColorPickerSliderBText.TextSize = 14.000
-
+        
             local mouse = game.Players.LocalPlayer:GetMouse()
             local uis = game:GetService("UserInputService")
             local ValueR = 0
             local ValueG = 0
             local ValueB = 0
-
+        
             ColorPickerButton.MouseButton1Click:Connect(function()
                 play("rbxassetid://178104975")
                 if ColorPickerFrame.Visible then
@@ -891,7 +893,7 @@ function library:CreateWindow(name, theme)
                     ColorPickerFrame.Visible = true
                 end
             end)
-
+        
             ColorPickerSliderRButton.MouseButton1Down:Connect(function()
                 ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
                 pcall(function()
@@ -919,7 +921,7 @@ function library:CreateWindow(name, theme)
                     end
                 end)
             end)
-
+        
             ColorPickerSliderGButton.MouseButton1Down:Connect(function()
                 ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
                 pcall(function()
@@ -947,7 +949,7 @@ function library:CreateWindow(name, theme)
                     end
                 end)
             end)
-
+        
             ColorPickerSliderBButton.MouseButton1Down:Connect(function()
                 ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
                 pcall(function()
@@ -976,6 +978,7 @@ function library:CreateWindow(name, theme)
                 end)
             end)
         end
+        
 
         return InsideTab
     end
