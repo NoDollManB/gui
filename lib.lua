@@ -686,7 +686,6 @@ function library:CreateWindow(name, theme)
     local ColorPicker = Instance.new("TextLabel")
     local ColorPickerButton = Instance.new("TextButton")
     local ColorPickerFrame = Instance.new("Frame")
-    local ColorPickerImage = Instance.new("ImageLabel")
     local ColorPickerSliderR = Instance.new("TextLabel")
     local ColorPickerSliderG = Instance.new("TextLabel")
     local ColorPickerSliderB = Instance.new("TextLabel")
@@ -732,18 +731,6 @@ function library:CreateWindow(name, theme)
     ColorPickerFrame.Position = UDim2.new(1, 5, 0, 30)
     ColorPickerFrame.Size = UDim2.new(0, 197, 0, 150)
     ColorPickerFrame.Visible = false
-
-    ColorPickerImage.Name = "ColorPickerImage"
-    ColorPickerImage.Parent = ColorPickerFrame
-    ColorPickerImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    ColorPickerImage.BackgroundTransparency = 1.000
-    ColorPickerImage.Position = UDim2.new(0, 0, 0, 0)
-    ColorPickerImage.Size = UDim2.new(0, 197, 0, 100)
-    ColorPickerImage.Image = "rbxassetid://3570695787"
-    ColorPickerImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
-    ColorPickerImage.ScaleType = Enum.ScaleType.Slice
-    ColorPickerImage.SliceCenter = Rect.new(100, 100, 100, 100)
-    ColorPickerImage.SliceScale = 0.020
 
     ColorPickerSliderR.Name = "ColorPickerSliderR"
     ColorPickerSliderR.Parent = ColorPickerFrame
@@ -907,20 +894,24 @@ function library:CreateWindow(name, theme)
         end
     end)
 
+    local function updateSlider(sliderInner, textLabel, value)
+        value = math.floor((255 / 197) * sliderInner.AbsoluteSize.X) or 0
+        textLabel.Text = value
+        return value
+    end
+
     ColorPickerSliderRButton.MouseButton1Down:Connect(function()
-        ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
-        ColorPickerSliderRText.Text = ValueR
+        ValueR = updateSlider(ColorPickerSliderRInner, ColorPickerSliderRText, ValueR)
         updateColorPreview()
         ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
         local moveconnection = mouse.Move:Connect(function()
-            ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
-            ColorPickerSliderRText.Text = ValueR
+            ValueR = updateSlider(ColorPickerSliderRInner, ColorPickerSliderRText, ValueR)
             updateColorPreview()
             ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
         end)
         local releaseconnection = uis.InputEnded:Connect(function(Mouse)
             if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                ValueR = math.floor((255 / 197) * ColorPickerSliderRInner.AbsoluteSize.X) or 0
+                ValueR = updateSlider(ColorPickerSliderRInner, ColorPickerSliderRText, ValueR)
                 updateColorPreview()
                 ColorPickerSliderRInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderRInner.AbsolutePosition.X, 0, 197), 0, 16)
                 moveconnection:Disconnect()
@@ -930,19 +921,17 @@ function library:CreateWindow(name, theme)
     end)
 
     ColorPickerSliderGButton.MouseButton1Down:Connect(function()
-        ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
-        ColorPickerSliderGText.Text = ValueG
+        ValueG = updateSlider(ColorPickerSliderGInner, ColorPickerSliderGText, ValueG)
         updateColorPreview()
         ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
         local moveconnection = mouse.Move:Connect(function()
-            ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
-            ColorPickerSliderGText.Text = ValueG
+            ValueG = updateSlider(ColorPickerSliderGInner, ColorPickerSliderGText, ValueG)
             updateColorPreview()
             ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
         end)
         local releaseconnection = uis.InputEnded:Connect(function(Mouse)
             if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                ValueG = math.floor((255 / 197) * ColorPickerSliderGInner.AbsoluteSize.X) or 0
+                ValueG = updateSlider(ColorPickerSliderGInner, ColorPickerSliderGText, ValueG)
                 updateColorPreview()
                 ColorPickerSliderGInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderGInner.AbsolutePosition.X, 0, 197), 0, 16)
                 moveconnection:Disconnect()
@@ -952,19 +941,17 @@ function library:CreateWindow(name, theme)
     end)
 
     ColorPickerSliderBButton.MouseButton1Down:Connect(function()
-        ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
-        ColorPickerSliderBText.Text = ValueB
+        ValueB = updateSlider(ColorPickerSliderBInner, ColorPickerSliderBText, ValueB)
         updateColorPreview()
         ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
         local moveconnection = mouse.Move:Connect(function()
-            ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
-            ColorPickerSliderBText.Text = ValueB
+            ValueB = updateSlider(ColorPickerSliderBInner, ColorPickerSliderBText, ValueB)
             updateColorPreview()
             ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
         end)
         local releaseconnection = uis.InputEnded:Connect(function(Mouse)
             if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                ValueB = math.floor((255 / 197) * ColorPickerSliderBInner.AbsoluteSize.X) or 0
+                ValueB = updateSlider(ColorPickerSliderBInner, ColorPickerSliderBText, ValueB)
                 updateColorPreview()
                 ColorPickerSliderBInner.Size = UDim2.new(0, math.clamp(mouse.X - ColorPickerSliderBInner.AbsolutePosition.X, 0, 197), 0, 16)
                 moveconnection:Disconnect()
