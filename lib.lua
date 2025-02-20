@@ -82,6 +82,9 @@ function library:CreateKeyWin(name, description, key, theme1, theme2, theme3, ca
     local NameLabel = Instance.new("TextLabel")
     local DescriptionLabel = Instance.new("TextLabel")
     local KeyInput = Instance.new("TextBox")
+    local KeyMain = Instance.new("Frame")
+    local InputBox = Instance.new("TextBox")
+    local UIStroke = Instance.new("UIStroke")
 
     Screen.Name = "BY DollManB"
     Screen.Parent = game:WaitForChild("CoreGui")
@@ -124,31 +127,48 @@ function library:CreateKeyWin(name, description, key, theme1, theme2, theme3, ca
     DescriptionLabel.TextSize = 14.000
     DescriptionLabel.TextWrapped = true
 
-    KeyInput.Name = "KeyInput"
-    KeyInput.Parent = KeyWindow
-    KeyInput.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    KeyInput.BackgroundTransparency = 1.000
-    KeyInput.Position = UDim2.new(0.05, 0, 0.6, 0)
-    KeyInput.Size = UDim2.new(0, 280, 0, 30)
-    KeyInput.Font = Enum.Font.SourceSans
-    KeyInput.PlaceholderText = "Enter Key"
-    KeyInput.Text = ""
-    KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-    KeyInput.TextSize = 14.000
+    KeyMain.Name = "KeyMain"
+    KeyMain.Parent = KeyWindow
+    KeyMain.BackgroundTransparency = 1.0
+    KeyMain.Position = UDim2.new(0.05, 0, 0.6, 0)
+    KeyMain.Size = UDim2.new(0, 280, 0, 30)
 
-    KeyInput.FocusLost:Connect(function(enterPressed)
+    InputBox.Name = "InputBox"
+    InputBox.Parent = KeyMain
+    InputBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    InputBox.BackgroundTransparency = 1.0
+    InputBox.Size = UDim2.new(1, 0, 1, 0)
+    InputBox.Font = Enum.Font.SourceSans
+    InputBox.PlaceholderText = "Enter Key"
+    InputBox.Text = ""
+    InputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+    InputBox.TextSize = 14.000
+
+    UIStroke.Name = "UIStroke"
+    UIStroke.Parent = KeyMain
+    UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    UIStroke.Color = Color3.fromRGB(255, 255, 255)
+    UIStroke.Thickness = 1
+    UIStroke.Transparency = 1.0
+
+    -- Анимация для поля ввода
+    local tweenService = game:GetService("TweenService")
+    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Exponential)
+    tweenService:Create(KeyMain, tweenInfo, {BackgroundTransparency = 0}):Play()
+    tweenService:Create(UIStroke, tweenInfo, {Transparency = 0}):Play()
+    tweenService:Create(InputBox, tweenInfo, {TextTransparency = 0}):Play()
+
+    InputBox.FocusLost:Connect(function(enterPressed)
         if enterPressed then
-            if KeyInput.Text == key then
+            if InputBox.Text == key then
                 KeyWindow:Destroy()
                 callback()
             else
-                local tweenService = game:GetService("TweenService")
-                local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-                local shakeTween = tweenService:Create(KeyWindow, tweenInfo, {Position = KeyWindow.Position + UDim2.new(0, 10, 0, 0)})
+                local shakeTween = tweenService:Create(KeyWindow, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = KeyWindow.Position + UDim2.new(0, 10, 0, 0)})
                 shakeTween:Play()
                 shakeTween.Completed:Connect(function()
                     KeyWindow.Position = KeyWindow.Position - UDim2.new(0, 10, 0, 0)
-                    local shakeTween2 = tweenService:Create(KeyWindow, tweenInfo, {Position = KeyWindow.Position - UDim2.new(0, 10, 0, 0)})
+                    local shakeTween2 = tweenService:Create(KeyWindow, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = KeyWindow.Position - UDim2.new(0, 10, 0, 0)})
                     shakeTween2:Play()
                     shakeTween2.Completed:Connect(function()
                         KeyWindow.Position = KeyWindow.Position + UDim2.new(0, 10, 0, 0)
@@ -158,6 +178,7 @@ function library:CreateKeyWin(name, description, key, theme1, theme2, theme3, ca
         end
     end)
 end
+
 
 function library:CreateMainWindow(name, theme1, theme2, theme3)
     local Screen = Instance.new("ScreenGui")
