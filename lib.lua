@@ -13,7 +13,7 @@ function play(id)
     Sound:Play()
 end
 
-function library:CreateWindow(name, theme)
+function library:CreateWindow(name, theme, keySystem, key)
     local theme1
     local theme2
     local theme3
@@ -67,6 +67,99 @@ function library:CreateWindow(name, theme)
         print("Theme selected: " .. theme)
     end
 
+    if keySystem then
+        self:CreateKeyWin(name, description, key, theme1, theme2, theme3, function()
+            self:CreateMainWindow(name, theme1, theme2, theme3)
+        end)
+    else
+        self:CreateMainWindow(name, theme1, theme2, theme3)
+    end
+end
+
+function library:CreateKeyWin(name, description, key, theme1, theme2, theme3, callback)
+    local Screen = Instance.new("ScreenGui")
+    local KeyWindow = Instance.new("ImageLabel")
+    local NameLabel = Instance.new("TextLabel")
+    local DescriptionLabel = Instance.new("TextLabel")
+    local KeyInput = Instance.new("TextBox")
+
+    Screen.Name = "BY DollManB"
+    Screen.Parent = game:WaitForChild("CoreGui")
+    Screen.Enabled = true
+
+    KeyWindow.Name = "KeyWindow"
+    KeyWindow.Parent = Screen
+    KeyWindow.AnchorPoint = Vector2.new(0.5, 0.5)
+    KeyWindow.BackgroundColor3 = Color3.fromRGB(33, 32, 49)
+    KeyWindow.BackgroundTransparency = 1.000
+    KeyWindow.Active = true
+    KeyWindow.Position = UDim2.new(0.5, 0, 0.5, 0)
+    KeyWindow.Size = UDim2.new(0, 300, 0, 200)
+    KeyWindow.Image = "rbxassetid://3570695787"
+    KeyWindow.ImageColor3 = theme1
+    KeyWindow.ScaleType = Enum.ScaleType.Slice
+    KeyWindow.SliceCenter = Rect.new(100, 100, 100, 100)
+    KeyWindow.SliceScale = 0.030
+
+    NameLabel.Name = "NameLabel"
+    NameLabel.Parent = KeyWindow
+    NameLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    NameLabel.BackgroundTransparency = 1.000
+    NameLabel.Position = UDim2.new(0.05, 0, 0.1, 0)
+    NameLabel.Size = UDim2.new(0, 280, 0, 30)
+    NameLabel.Font = Enum.Font.SourceSansSemibold
+    NameLabel.Text = name
+    NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    NameLabel.TextSize = 18.000
+
+    DescriptionLabel.Name = "DescriptionLabel"
+    DescriptionLabel.Parent = KeyWindow
+    DescriptionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DescriptionLabel.BackgroundTransparency = 1.000
+    DescriptionLabel.Position = UDim2.new(0.05, 0, 0.3, 0)
+    DescriptionLabel.Size = UDim2.new(0, 280, 0, 50)
+    DescriptionLabel.Font = Enum.Font.SourceSans
+    DescriptionLabel.Text = description
+    DescriptionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DescriptionLabel.TextSize = 14.000
+    DescriptionLabel.TextWrapped = true
+
+    KeyInput.Name = "KeyInput"
+    KeyInput.Parent = KeyWindow
+    KeyInput.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    KeyInput.BackgroundTransparency = 1.000
+    KeyInput.Position = UDim2.new(0.05, 0, 0.6, 0)
+    KeyInput.Size = UDim2.new(0, 280, 0, 30)
+    KeyInput.Font = Enum.Font.SourceSans
+    KeyInput.PlaceholderText = "Enter Key"
+    KeyInput.Text = ""
+    KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+    KeyInput.TextSize = 14.000
+
+    KeyInput.FocusLost:Connect(function(enterPressed)
+        if enterPressed then
+            if KeyInput.Text == key then
+                KeyWindow:Destroy()
+                callback()
+            else
+                local tweenService = game:GetService("TweenService")
+                local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+                local shakeTween = tweenService:Create(KeyWindow, tweenInfo, {Position = KeyWindow.Position + UDim2.new(0, 10, 0, 0)})
+                shakeTween:Play()
+                shakeTween.Completed:Connect(function()
+                    KeyWindow.Position = KeyWindow.Position - UDim2.new(0, 10, 0, 0)
+                    local shakeTween2 = tweenService:Create(KeyWindow, tweenInfo, {Position = KeyWindow.Position - UDim2.new(0, 10, 0, 0)})
+                    shakeTween2:Play()
+                    shakeTween2.Completed:Connect(function()
+                        KeyWindow.Position = KeyWindow.Position + UDim2.new(0, 10, 0, 0)
+                    end)
+                end)
+            end
+        end
+    end)
+end
+
+function library:CreateMainWindow(name, theme1, theme2, theme3)
     local Screen = Instance.new("ScreenGui")
     local Top = Instance.new("ImageLabel")
     local Toggle = Instance.new("ImageButton")
@@ -960,7 +1053,6 @@ function library:CreateWindow(name, theme)
         end)
     end)
 end
-        
 
         return InsideTab
     end
