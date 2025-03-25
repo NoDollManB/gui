@@ -3,10 +3,10 @@ local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 local Theme = {
-    Background = Color3.fromRGB(20, 20, 20),      -- Черный фон
-    Accent = Color3.fromRGB(255, 50, 50),         -- Красные акценты
-    TextColor = Color3.fromRGB(255, 255, 255),    -- Белый текст
-    ElementBackground = Color3.fromRGB(30, 30, 30) -- Темно-серый для элементов
+    Background = Color3.fromRGB(20, 20, 20),
+    Accent = Color3.fromRGB(255, 50, 50),
+    TextColor = Color3.fromRGB(255, 255, 255),
+    ElementBackground = Color3.fromRGB(30, 30, 30)
 }
 
 function Library:CreateWindow(title)
