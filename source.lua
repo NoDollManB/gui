@@ -88,7 +88,7 @@ function Library:CreateWindow(title)
         TabButton.BackgroundColor3 = Theme.ElementBackground
         TabButton.Text = tabName
         TabButton.TextColor3 = Theme.TextColor
-        TabButton.Font = Enum.Font.Arcade -- Пиксельный шрифт
+        TabButton.Font = Enum.Font.Arcade
         TabButton.TextSize = 14
         TabButton.Parent = MainFrame
 
@@ -120,7 +120,7 @@ function Library:CreateWindow(title)
             Button.BackgroundColor3 = Theme.ElementBackground
             Button.Text = buttonText
             Button.TextColor3 = Theme.TextColor
-            Button.Font = Enum.Font.Arcade -- Пиксельный шрифт
+            Button.Font = Enum.Font.Arcade
             Button.TextSize = 14
             Button.Parent = TabFrame
 
